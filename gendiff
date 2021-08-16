@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+const {gendiff} = require('commander');
+// gendiff.version('0.0.1');
+gendiff
+    .option('-V, --version', 'output the version number')
+    .option('-h, --help', 'output usage information');
+
+    gendiff.parse(process.argv);
+const options = gendiff.opts();
+// if (options.version) console.log(gendiff.version);
+if (options.help) console.log(`Usage: gendiff [options]
+
+Compares two configuration files and shows a difference.
+
+Options:
+  -V, --version        output the version number
+  -h, --help           output usage information`);
