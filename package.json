@@ -1,6 +1,9 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
+  "bin": {
+    "gendiff": "./gendiff.js"
+  },
   "description": "Difference Computer",
   "main": "index.js",
   "scripts": {
