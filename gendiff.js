@@ -1,4 +1,8 @@
 #!/usr/bin/env node
-const gendiff = require('commander');
-gendiff.version('0.0.1');
-gendiff.parse(process.argv);
+const program = require('commander');
+program.version('0.0.1');
+program
+    .option('-f, --format <type>', 'output format');
+program
+    .description('Compares two configuration files and show a difference.')
+program.parse(process.argv);
