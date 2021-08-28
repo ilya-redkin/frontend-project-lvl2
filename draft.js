@@ -1,22 +1,9 @@
-#!/usr/bin/env node
+const compare = (file1, file2) => {
 
-
-const program = require('commander');
-const fs = require('fs');
-const _ = require('lodash');
-const path = require ('path');
-program.version('0.0.1');
-program
-    .option('-f, --format <type>', 'output format');
-program
-    .description('Compares two configuration files and shows a difference.');
-program
-    .argument('<file1>', 'first file to compare')
-    .argument('<file2>', 'second file to compare')
-    .description('compares two configuration files and shows a difference')
-    .action((file1, file2) => {
-        const data1 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file1)}`, 'utf8'));
+    const data1 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file1)}`, 'utf8'));
     const data2 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file2)}`, 'utf8'));
+    // console.log(data1);
+    // console.log(data2);
     
     const listOfKeys = _.union(Object.keys(data1), Object.keys(data2)).sort();
     
@@ -44,12 +31,41 @@ program
     output = `{${output}
     }`;
     console.log(output);
-    });
-    
-program.parse(process.argv);
+};
+
+compare('./file1.json', '/home/ilya/hexlet/frontend-project-lvl2/frontend-project-lvl2/file2.json');
 
 
 
 
+
+
+
+
+
+// console.log(listOfKeys);
+// console.log(data2);
+
+// const ordered1 = Object.keys(data1).sort().reduce(
+//     (obj, key) => { 
+//       obj[key] = data1[key]; 
+//       return obj;
+//     }, 
+//     {}
+//   );
+
+//   const ordered2 = Object.keys(data2).sort().reduce(
+//     (obj, key) => { 
+//       obj[key] = data2[key]; 
+//       return obj;
+//     }, 
+//     {}
+//   );
+
+
+// const ordered1 = Object.entries(data1).sort();
+// const ordered2 = Object.entries(data2).sort();
+
+// const ordered = Object.entries(data1).sort();
 
 
