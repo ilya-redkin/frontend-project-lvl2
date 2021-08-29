@@ -19,7 +19,6 @@ program
     const data2 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file2)}`, 'utf8'));
     
     const listOfKeys = _.union(Object.keys(data1), Object.keys(data2)).sort();
-    
     let output = '';
     
     for (const key of listOfKeys) {

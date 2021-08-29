@@ -5,7 +5,7 @@
     "gendiff": "./gendiff.js"
   },
   "description": "Difference Computer",
-  "main": "index.js",
+  "main": "gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
