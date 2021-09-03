@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const compare = (file1, file2) => {
 
     const data1 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file1)}`, 'utf8'));
