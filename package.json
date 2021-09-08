@@ -5,6 +5,7 @@
     "gendiff": "./gendiff.js"
   },
   "description": "Difference Computer",
+  "type": "module",
   "main": "gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +25,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "jest": "^27.1.0"
   }
 }

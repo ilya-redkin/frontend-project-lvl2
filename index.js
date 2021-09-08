@@ -1,6 +1,14 @@
-const fs = require('fs');
-const _ = require('lodash');
-const path = require ('path');
+// const fs = require('fs');
+// const _ = require('lodash');
+// const path = require ('path');
+import _ from 'lodash';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from "path";
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const compare = (file1, file2) => {
 
@@ -29,10 +37,11 @@ const compare = (file1, file2) => {
         + ${key}: ${data2[key]}`
     }
     }
-    output = `{${output}
-    }`;
+    output = `{${output}\n}`;
     console.log(output);
-    
+    return output;
 };
 
-module.exports = compare;
+export default compare;
+
+//module.exports = compare;

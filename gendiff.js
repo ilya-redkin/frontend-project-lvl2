@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 
-const program = require('commander');
-const compare = require('./index.js');
+// const program = require('commander');
+// const compare = require('./index.js');
+import program from 'commander';
+import compare from './index.js'
 
 // compare('./file1.json', './file2.json');
 
