@@ -20,4 +20,5 @@ jobs:
         run: ls -al
 
       - name: Run test
+        run: make istall
         run: make test
