@@ -13,5 +13,5 @@ lint:
 test:
 	npx -n --experimental-vm-modules jest
 
-# test-coverage:
-# 	npx -n --experimental-vm-modules jest -- --coverage --coverageProvider=v8
+test-coverage:
+	npx -n --experimental-vm-modules jest --coverage --coverageProvider=v8
