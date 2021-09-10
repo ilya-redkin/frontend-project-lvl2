@@ -19,6 +19,8 @@ jobs:
       - name: Show content
         run: ls -al
 
-      - name: Run test
+      - name: Install
         run: make istall
+      
+      - name: Run tests
         run: make test
