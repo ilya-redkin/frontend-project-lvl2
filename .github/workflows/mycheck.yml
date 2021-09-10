@@ -13,14 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Show directory
-        run: pwd
-
-      - name: Show content
-        run: ls -al
-
       - name: Install
         run: make install
       
-      - name: Run tests
+      - name: Tests
         run: make test
+
+      - name: Linter
+        run: make lint
