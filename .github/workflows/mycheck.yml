@@ -1,8 +1,23 @@
-name: mycheck
-on: push
+name: my-check
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
 jobs:
-  my-job:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: run tests
-        run: npx -n --experimental-vm-modules jest
+      - uses: actions/checkout@v2
+
+      - name: Show directory
+        run: pwd
+
+      - name: Show content
+        run: ls -al
+
+      - name: Run test
+        run: make test
