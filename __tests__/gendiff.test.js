@@ -27,5 +27,21 @@ test('compare', async () => {
 }`);
 });
 
-// const result = compare('file1.json', 'file2.json');
-// console.log(result);
+test('compare', async () => {
+  const file1 = `${__dirname}/../__fixtures__/testfile1.yaml`;
+  const file2 = `${__dirname}/../__fixtures__/testfile2.yml`;
+  expect(compare(file1, file2)).toEqual(`{
+        - follow: false
+          host: hexlet.io
+        - proxy: 123.234.53.22
+        - timeout: 50
+        + timeout: 20
+        + verbose: true
+}`);
+  expect(compare(file1, file1)).toEqual(`{
+          follow: false
+          host: hexlet.io
+          proxy: 123.234.53.22
+          timeout: 50
+}`);
+});

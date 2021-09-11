@@ -1,15 +1,9 @@
-import path from 'path';
 import _ from 'lodash';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import parseFile from './parsers';
 
 const compare = (file1, file2) => {
-  const data1 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file1)}`, 'utf8'));
-  const data2 = JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file2)}`, 'utf8'));
+  const data1 = parseFile(file1);
+  const data2 = parseFile(file2);
   const listOfKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
 
   let output = '';

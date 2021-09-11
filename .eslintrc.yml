@@ -10,7 +10,6 @@ parserOptions:
   sourceType: module
 rules: 
   no-prototype-builtins: 0 #should I leave it??
-  import/no-duplicates: 0 #fix later
   no-console: 0
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
