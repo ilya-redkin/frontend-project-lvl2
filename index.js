@@ -5,7 +5,6 @@ const compare = (file1, file2) => {
   const data1 = parseFile(file1);
   const data2 = parseFile(file2);
   const listOfKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
-
   let output = '';
   listOfKeys.forEach((key) => {
     if (!data2.hasOwnProperty(key)) {
@@ -26,7 +25,6 @@ const compare = (file1, file2) => {
         + ${key}: ${data2[key]}`;
     }
   });
-
   output = `{${output}\n}`;
   console.log(output);
   return output;
