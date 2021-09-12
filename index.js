@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import parseFile from './parsers';
+import parseFile from './parsers.js';
 
 const compare = (file1, file2) => {
   const data1 = parseFile(file1);
