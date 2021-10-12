@@ -18,6 +18,6 @@ const parseFile = (file) => {
   return 'The file is neither .json nor .yaml';
 };
 
-console.log(parseFile('file1.json'));
+console.log(parseFile('./__fixtures__/testfile4.yaml'));
 
 export default parseFile;
