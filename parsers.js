@@ -18,6 +18,6 @@ const parseFile = (file) => {
   return 'The file is neither .json nor .yaml';
 };
 
-console.log(parseFile('file1.json'));
+// console.log(parseFile('file1.json'));
 
 export default parseFile;
