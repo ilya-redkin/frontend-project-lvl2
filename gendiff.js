@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import program from 'commander';
-import {compare, stylish} from './index.js';
+import { compare, stylish } from './index.js';
 
 import parseFile from './parsers.js';
 

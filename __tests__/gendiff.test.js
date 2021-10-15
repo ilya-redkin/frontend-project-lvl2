@@ -1,10 +1,9 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { test, expect } from '@jest/globals';
-import {compare, stylish, plain} from '../index.js';
+import { compare, stylish, plain } from '../index.js';
 
 import parseFile from '../parsers.js';
-
 
 // import path from "path";
 
@@ -101,7 +100,6 @@ test('compare_deep_json_stylish', async () => {
         fee: 100500
     }
 }`);
-  
 });
 
 test('compare_deep_json_plain', async () => {
