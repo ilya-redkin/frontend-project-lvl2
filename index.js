@@ -31,10 +31,13 @@ export const compare = (file1, file2) => {
 };
 
 export const genDiff = (filepath1, filepath2, formatName) => {
-  if (formatName === 'stylish') {
+  // console.log(formatName);
+  if (formatName.format === 'stylish') {
     return stylish(compare(parseFile(filepath1), parseFile(filepath2)));
-  } else if (formatName === 'plain') {
+  } else if (formatName.format === 'plain') {
     return plain(compare(parseFile(filepath1), parseFile(filepath2)));
+  } else if (formatName.format === 'json') {
+    return compare(parseFile(filepath1), parseFile(filepath2));
   } else {
     return 'Incorrect format name';
   }

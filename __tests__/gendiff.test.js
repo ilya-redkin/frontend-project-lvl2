@@ -121,3 +121,10 @@ test('compare_deep_json_plain', async () => {
   Property 'group2' was removed
   Property 'group3' was added with value: [complex value]`);
 });
+
+test('compare_deep_json_json', async () => {
+  const file1 = `${__dirname}/../__fixtures__/testfile3.json`;
+  const file2 = `${__dirname}/../__fixtures__/testfile4.json`;
+
+  expect(JSON.stringify(compare(parseFile(file1), parseFile(file2)))).toEqual('[{"type":"changedInside","key":"common","children":[{"type":"added","key":"follow","value":false},{"type":"unchanged","key":"setting1","value":"Value 1"},{"type":"removed","key":"setting2","value":200},{"type":"changed","key":"setting3","oldValue":true,"newValue":null},{"type":"added","key":"setting4","value":"blah blah"},{"type":"added","key":"setting5","value":{"key5":"value5"}},{"type":"changedInside","key":"setting6","children":[{"type":"changedInside","key":"doge","children":[{"type":"changed","key":"wow","oldValue":"","newValue":"so much"}]},{"type":"unchanged","key":"key","value":"value"},{"type":"added","key":"ops","value":"vops"}]}]},{"type":"changedInside","key":"group1","children":[{"type":"changed","key":"baz","oldValue":"bas","newValue":"bars"},{"type":"unchanged","key":"foo","value":"bar"},{"type":"changed","key":"nest","oldValue":{"key":"value"},"newValue":"str"}]},{"type":"removed","key":"group2","value":{"abc":12345,"deep":{"id":45}}},{"type":"added","key":"group3","value":{"deep":{"id":{"number":45}},"fee":100500}}]');
+});

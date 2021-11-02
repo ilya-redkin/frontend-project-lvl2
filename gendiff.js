@@ -17,11 +17,4 @@ program
 
   .action((file1, file2, type) => console.log(genDiff(file1, file2, type)));
 
-// program
-//   .option('-p, --plain', 'output format')
-//   .argument('<file1>', 'first file to compare')
-//   .argument('<file2>', 'second file to compare')
-//   .description('compares two configuration files and shows a difference')
-//   .action((file1, file2) => console.log())
-
 program.parse(process.argv);
