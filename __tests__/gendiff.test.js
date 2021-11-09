@@ -1,10 +1,11 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { test, expect } from '@jest/globals';
-import { compare } from '../src/compare.js';
-import plain from '../src/formatters/plain.js';
-import stylish from '../src/formatters/stylish.js';
-import parseFile from '../src/parsers.js';
+import { compare } from '../index.js';
+import plain from '../formatters/plain.js';
+import stylish from '../formatters/stylish.js';
+
+import parseFile from '../parsers.js';
 
 // import path from "path";
 
