@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "bin": {
-    "gendiff": "./gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "description": "Difference Computer",
   "type": "module",

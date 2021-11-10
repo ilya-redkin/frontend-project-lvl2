@@ -8,6 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const parseFile = (file) => {
+  console.log(process.cwd(), 'THIS IS THE PATH!');
+  console.log(__dirname);
   const pathName = `${path.resolve(__dirname, file)}`;
   if (path.extname(pathName) === '.json') {
     return JSON.parse(fs.readFileSync(`${path.resolve(__dirname, file)}`, 'utf8'));
