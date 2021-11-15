@@ -1,4 +1,4 @@
-const stylish = (arr, replacer = '    ', spacesCount = 1) => {
+const stylishFunc = (arr, replacer = '    ', spacesCount = 1) => {
   if (!Array.isArray(arr)) { return 'The file is neither .json nor .yaml'; }
   const iter = (data, depth) => {
     const currentIndent = replacer.toString().repeat(depth * spacesCount);
@@ -57,4 +57,4 @@ const stylish = (arr, replacer = '    ', spacesCount = 1) => {
   return iter(arr, 1);
 };
 
-export default stylish;
+export default stylishFunc;

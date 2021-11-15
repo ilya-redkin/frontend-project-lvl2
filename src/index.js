@@ -2,8 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import parseFile from './parsers.js';
-import stylish from './formatters/stylish.js';
-import plain from './formatters/plain.js';
 import compare from './compare.js';
 import render from './formatters/index.js';
 
@@ -24,18 +22,11 @@ const genDiff = (filepath1, filepath2, formatName) => {
   const file1 = readFile(path1);
   const file2 = readFile(path2);
   const ast = compare(parseFile(file1, extention1), parseFile(file2, extention2));
-
-  return render(ast, formatName);
-  // if (formatName.format === 'stylish') {
-  //   return stylish(compare(parseFile(file1, extention1), parseFile(file2, extention2)));
-  // } else if (formatName.format === 'plain') {
-  //   return plain(compare(parseFile(file1, extention1), parseFile(file2, extention2)));
-  // } else if (formatName.format === 'json') {
-  //   return JSON.stringify(compare(parseFile(file1, extention1), 
-  // parseFile(file2, extention2))[0]);
-  // } else {
-  //   return 'Incorrect format name';
-  // }
+  const { format } = formatName;
+  if (format === 'json') {
+    return render(ast[0], format);
+  }
+  return render(ast, format);
 };
 
 export default genDiff;

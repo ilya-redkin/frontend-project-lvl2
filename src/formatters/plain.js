@@ -1,4 +1,4 @@
-const plain = (data, path = '') => {
+const plainFunc = (data, path = '') => {
   let previousPath;
   let result = '';
   data.map((item) => {
@@ -35,7 +35,7 @@ const plain = (data, path = '') => {
     if (item.type === 'changedInside') {
       previousPath = path;
       path += `${item.key}.`;
-      result += `${plain(item.children, path)}`;
+      result += `${plainFunc(item.children, path)}`;
       path = previousPath;
     }
     return 0;
@@ -43,4 +43,4 @@ const plain = (data, path = '') => {
   return result;
 };
 
-export default plain;
+export default plainFunc;
