@@ -1,22 +1,22 @@
+import fs from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { test, expect } from '@jest/globals';
 import compare from '../src/compare.js';
 import plain from '../src/formatters/plain.js';
 import stylish from '../src/formatters/stylish.js';
-
 import parseFile from '../src/parsers.js';
-
-// import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-test('compare_flat_json_stylish', async () => {
-  const file1 = `${__dirname}/../__fixtures__/testfile1.json`;
-  const file2 = `${__dirname}/../__fixtures__/testfile2.json`;
+const readFile = (filePath) => fs.readFileSync(filePath, 'utf8');
 
-  expect(stylish(compare(parseFile(file1), parseFile(file2)))).toEqual(`{
+test('compare_flat_json_stylish', async () => {
+  const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.json`);
+  const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.json`);
+  console.log(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json'))), '5555555');
+  expect(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(`{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -25,7 +25,7 @@ test('compare_flat_json_stylish', async () => {
   + verbose: true
 }`);
 
-  expect(stylish(compare(parseFile(file1), parseFile(file1)))).toEqual(`{
+  expect(stylish(compare(parseFile(file1, '.json'), parseFile(file1, '.json')))).toEqual(`{
     follow: false
     host: hexlet.io
     proxy: 123.234.53.22
@@ -34,10 +34,10 @@ test('compare_flat_json_stylish', async () => {
 });
 
 test('compare_flat_yaml_stylish', async () => {
-  const file1 = `${__dirname}/../__fixtures__/testfile1.yaml`;
-  const file2 = `${__dirname}/../__fixtures__/testfile2.yml`;
+  const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.yaml`);
+  const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.yml`);
 
-  expect(stylish(compare(parseFile(file1), parseFile(file2)))).toEqual(`{
+  expect(stylish(compare(parseFile(file1, '.yaml'), parseFile(file2, '.yml')))).toEqual(`{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -46,7 +46,7 @@ test('compare_flat_yaml_stylish', async () => {
   + verbose: true
 }`);
 
-  expect(stylish(compare(parseFile(file1), parseFile(file1)))).toEqual(`{
+  expect(stylish(compare(parseFile(file1, '.yaml'), parseFile(file1, '.yaml')))).toEqual(`{
     follow: false
     host: hexlet.io
     proxy: 123.234.53.22
@@ -55,10 +55,10 @@ test('compare_flat_yaml_stylish', async () => {
 });
 
 test('compare_deep_json_stylish', async () => {
-  const file1 = `${__dirname}/../__fixtures__/testfile3.json`;
-  const file2 = `${__dirname}/../__fixtures__/testfile4.json`;
+  const file1 = readFile(`${__dirname}/../__fixtures__/testfile3.json`);
+  const file2 = readFile(`${__dirname}/../__fixtures__/testfile4.json`);
 
-  expect(stylish(compare(parseFile(file1), parseFile(file2)))).toEqual(`{
+  expect(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(`{
     common: {
       + follow: false
         setting1: Value 1
@@ -105,10 +105,10 @@ test('compare_deep_json_stylish', async () => {
 });
 
 test('compare_deep_json_plain', async () => {
-  const file1 = `${__dirname}/../__fixtures__/testfile3.json`;
-  const file2 = `${__dirname}/../__fixtures__/testfile4.json`;
+  const file1 = readFile(`${__dirname}/../__fixtures__/testfile3.json`);
+  const file2 = readFile(`${__dirname}/../__fixtures__/testfile4.json`);
 
-  expect(plain(compare(parseFile(file1), parseFile(file2)))).toEqual(`
+  expect(plain(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(`
   Property 'common.follow' was added with value: false
   Property 'common.setting2' was removed
   Property 'common.setting3' was updated. From true to null
@@ -123,8 +123,8 @@ test('compare_deep_json_plain', async () => {
 });
 
 test('compare_deep_json_json', async () => {
-  const file1 = `${__dirname}/../__fixtures__/testfile3.json`;
-  const file2 = `${__dirname}/../__fixtures__/testfile4.json`;
+  const file1 = readFile(`${__dirname}/../__fixtures__/testfile3.json`);
+  const file2 = readFile(`${__dirname}/../__fixtures__/testfile4.json`);
 
-  expect(JSON.stringify(compare(parseFile(file1), parseFile(file2)))).toEqual('[{"type":"changedInside","key":"common","children":[{"type":"added","key":"follow","value":false},{"type":"unchanged","key":"setting1","value":"Value 1"},{"type":"removed","key":"setting2","value":200},{"type":"changed","key":"setting3","oldValue":true,"newValue":null},{"type":"added","key":"setting4","value":"blah blah"},{"type":"added","key":"setting5","value":{"key5":"value5"}},{"type":"changedInside","key":"setting6","children":[{"type":"changedInside","key":"doge","children":[{"type":"changed","key":"wow","oldValue":"","newValue":"so much"}]},{"type":"unchanged","key":"key","value":"value"},{"type":"added","key":"ops","value":"vops"}]}]},{"type":"changedInside","key":"group1","children":[{"type":"changed","key":"baz","oldValue":"bas","newValue":"bars"},{"type":"unchanged","key":"foo","value":"bar"},{"type":"changed","key":"nest","oldValue":{"key":"value"},"newValue":"str"}]},{"type":"removed","key":"group2","value":{"abc":12345,"deep":{"id":45}}},{"type":"added","key":"group3","value":{"deep":{"id":{"number":45}},"fee":100500}}]');
+  expect(JSON.stringify(compare(parseFile(file1, '.json'), parseFile(file2, '.json'))[0])).toEqual('{"type":"changedInside","key":"common","children":[{"type":"added","key":"follow","value":false},{"type":"unchanged","key":"setting1","value":"Value 1"},{"type":"removed","key":"setting2","value":200},{"type":"changed","key":"setting3","oldValue":true,"newValue":null},{"type":"added","key":"setting4","value":"blah blah"},{"type":"added","key":"setting5","value":{"key5":"value5"}},{"type":"changedInside","key":"setting6","children":[{"type":"changedInside","key":"doge","children":[{"type":"changed","key":"wow","oldValue":"","newValue":"so much"}]},{"type":"unchanged","key":"key","value":"value"},{"type":"added","key":"ops","value":"vops"}]}]}');
 });

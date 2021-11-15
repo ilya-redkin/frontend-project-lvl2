@@ -1,12 +1,14 @@
 const stylish = (arr, replacer = '    ', spacesCount = 1) => {
+  if (!Array.isArray(arr)) { return 'The file is neither .json nor .yaml'; }
   const iter = (data, depth) => {
-    const currentIndent = replacer.repeat(depth * spacesCount);
-    const bracketIndent = replacer.repeat((depth - 1) * spacesCount);
+    const currentIndent = replacer.toString().repeat(depth * spacesCount);
+    const bracketIndent = replacer.toString().repeat((depth - 1) * spacesCount);
 
     const stringify = (value) => {
       const iter2 = (currentValue, stringifyDepth) => {
-        const stringifyCurrentIndent = replacer.repeat((stringifyDepth + 1) * spacesCount);
-        const stringifyBracketIndent = replacer.repeat(stringifyDepth * spacesCount);
+        const stringifyCurrentIndent = replacer
+          .repeat((stringifyDepth + 1) * spacesCount);
+        const stringifyBracketIndent = replacer.toString().repeat(stringifyDepth * spacesCount);
         if (typeof currentValue !== 'object') {
           return currentValue.toString();
         }

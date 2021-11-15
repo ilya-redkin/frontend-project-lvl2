@@ -4,5 +4,7 @@ import stylish from './stylish.js';
 const formatters = {
   plain,
   stylish,
-  json: 'something',
+  json: JSON.stringify,
 };
+
+export default formatters;
