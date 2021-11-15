@@ -15,7 +15,6 @@ const readFile = (filePath) => fs.readFileSync(filePath, 'utf8');
 test('compare_flat_json_stylish', async () => {
   const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.json`);
   const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.json`);
-  console.log(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json'))), '5555555');
   expect(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(`{
   - follow: false
     host: hexlet.io
