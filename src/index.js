@@ -1,14 +1,14 @@
 import path from 'path';
-import { fileURLToPath } from 'url';
+// import { fileURLToPath } from 'url';
 import fs from 'fs';
 import parseFile from './parsers.js';
 import compare from './compare.js';
 import render from './formatters/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
-const makeFullPath = (filePath) => path.join(__dirname, '..', filePath);
+const makeFullPath = (filePath) => path.resolve(process.cwd(), filePath);
 
 const getFileExtention = (filePath) => path.extname(filePath);
 
