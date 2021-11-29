@@ -1,11 +1,10 @@
-import plainFunc from './plain.js';
-import stylishFunc from './stylish.js';
-import jsonFunc from './json.js';
+import makePlain from './plain.js';
+import makeStylish from './stylish.js';
 
 const formatters = {
-  plain: plainFunc,
-  stylish: stylishFunc,
-  json: jsonFunc,
+  plain: makePlain,
+  stylish: makeStylish,
+  json: JSON.stringify,
 };
 
 const render = (ast, format) => formatters[format](ast);

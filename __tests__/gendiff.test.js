@@ -2,37 +2,25 @@ import fs from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { test, expect } from '@jest/globals';
-import compare from '../src/compare.js';
-import plain from '../src/formatters/plain.js';
-import stylish from '../src/formatters/stylish.js';
-import jsonFunc from '../src/formatters/json.js';
-import parseFile from '../src/parsers.js';
+import genDiff from '../index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const readFile = (filePath) => fs.readFileSync(filePath, 'utf8');
+const pathToFixtures = `${__dirname}/../__fixtures__/`;
+const readFile = (file) => fs.readFileSync(`${pathToFixtures}${file}`, 'utf8');
 
 test('compare_deep_json_stylish', async () => {
-  const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.json`);
-  const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.json`);
-  const stylishResult = readFile(`${__dirname}/../__fixtures__/stylishResult.txt`);
-
-  expect(stylish(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(stylishResult);
+  const stylishResult = readFile('stylishResult.txt');
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'stylish' })).toEqual(stylishResult);
 });
 
 test('compare_deep_json_plain', async () => {
-  const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.json`);
-  const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.json`);
-  const plainResult = readFile(`${__dirname}/../__fixtures__/plainResult.txt`);
-
-  expect(plain(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(plainResult);
+  const plainResult = readFile('plainResult.txt');
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'plain' })).toEqual(plainResult);
 });
 
 test('compare_deep_json_json', async () => {
-  const file1 = readFile(`${__dirname}/../__fixtures__/testfile1.json`);
-  const file2 = readFile(`${__dirname}/../__fixtures__/testfile2.json`);
-  const jsonResult = readFile(`${__dirname}/../__fixtures__/jsonResult.txt`);
-
-  expect(jsonFunc(compare(parseFile(file1, '.json'), parseFile(file2, '.json')))).toEqual(jsonResult);
+  const jsonResult = readFile('jsonResult.json');
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'json' })).toEqual(jsonResult);
 });

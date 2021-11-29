@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const compare = (file1, file2) => {
+const buildDiff = (file1, file2) => {
   const iter = (key) => {
     if (!_.hasIn(file1, key)) {
       return { type: 'added', key, value: file2[key] };
@@ -11,13 +11,8 @@ const compare = (file1, file2) => {
     if (_.isEqual(file1[key], file2[key])) {
       return { type: 'unchanged', key, value: file1[key] };
     }
-    if (typeof file1[key] !== 'object' || typeof file2[key] !== 'object' || file1[key] === null || file2[key] === null) {
-      return {
-        type: 'changed', key, oldValue: file1[key], newValue: file2[key],
-      };
-    }
     if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
-      return { type: 'changedInside', key, children: compare(file1[key], file2[key]) };
+      return { type: 'changedInside', key, children: buildDiff(file1[key], file2[key]) };
     }
     return {
       type: 'changed', key, oldValue: file1[key], newValue: file2[key],
@@ -28,4 +23,4 @@ const compare = (file1, file2) => {
   return result;
 };
 
-export default compare;
+export default buildDiff;

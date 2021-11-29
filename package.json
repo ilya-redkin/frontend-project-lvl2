@@ -6,7 +6,7 @@
   },
   "description": "Difference Computer",
   "type": "module",
-  "main": "gendiff.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
