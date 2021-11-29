@@ -15,3 +15,4 @@ rules:
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
   no-param-reassign: 0
+  prefer-destructuring: 0

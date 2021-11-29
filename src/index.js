@@ -18,7 +18,7 @@ const genDiff = (filepath1, filepath2, formatName) => {
   const file1 = readFile(path1);
   const file2 = readFile(path2);
   const ast = buildDiff(parseFile(file1, extention1), parseFile(file2, extention2));
-  const { format } = formatName;
+  const format = formatName.format;
   return render(ast, format);
 };
 
