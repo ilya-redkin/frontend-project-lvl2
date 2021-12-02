@@ -10,7 +10,7 @@ const getFileExtention = (filePath) => path.extname(filePath);
 
 const readFile = (filePath) => fs.readFileSync(filePath, 'utf8');
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const path1 = makeFullPath(filepath1);
   const path2 = makeFullPath(filepath2);
   const extention1 = getFileExtention(path1).slice(1);
