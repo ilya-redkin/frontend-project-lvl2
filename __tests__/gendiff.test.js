@@ -12,15 +12,15 @@ const readFile = (file) => fs.readFileSync(`${pathToFixtures}${file}`, 'utf8');
 
 test('compare_deep_json_stylish', async () => {
   const stylishResult = readFile('stylishResult.txt');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'stylish' })).toEqual(stylishResult);
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'stylish')).toEqual(stylishResult);
 });
 
 test('compare_deep_json_plain', async () => {
   const plainResult = readFile('plainResult.txt');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'plain' })).toEqual(plainResult);
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'plain')).toEqual(plainResult);
 });
 
 test('compare_deep_json_json', async () => {
   const jsonResult = readFile('jsonResult.json');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, { format: 'json' })).toEqual(jsonResult);
+  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'json')).toEqual(jsonResult);
 });

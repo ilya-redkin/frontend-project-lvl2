@@ -15,9 +15,6 @@ jobs:
 
       - name: Install
         run: make install
-
-      - name: nvm
-        run: nvm use 14.18.1
       
       - name: Tests
         run: make test
