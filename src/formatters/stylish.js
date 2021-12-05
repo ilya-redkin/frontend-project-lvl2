@@ -43,7 +43,7 @@ const makeStylish = (arr, replacer = '    ', spacesCount = 1) => {
         }
 
         if (currentValue.type === 'changed') {
-          return `${currentIndent.slice(0, -2)}- ${currentValue.key}: ${stringify(currentValue.oldValue)}\n${currentIndent.slice(0, -2)}+ ${currentValue.key}: ${currentValue.newValue}`;
+          return `${currentIndent.slice(0, -2)}- ${currentValue.key}: ${stringify(currentValue.oldValue)}\n${currentIndent.slice(0, -2)}+ ${currentValue.key}: ${stringify(currentValue.newValue)}`;
         }
 
         if (currentValue.type === 'changedInside') {
