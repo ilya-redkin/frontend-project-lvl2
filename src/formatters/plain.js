@@ -12,24 +12,21 @@ const makeFormatPreview = (value) => {
 };
 
 const makePlain = (data, path = '') => {
-  const result = [];
-  data.map((item) => {
-    if (item.type === 'removed') {
-      result.push(`Property '${path}${item.key}' was removed`);
-    }
-    if (item.type === 'added') {
-      result.push(`Property '${path}${item.key}' was added with value: ${makeFormatPreview(item.value)}`);
-    }
+  const result = data.filter((item) => item.type !== 'unchanged')
+    .map((item) => {
+      if (item.type === 'removed') {
+        return `Property '${path}${item.key}' was removed`;
+      }
+      if (item.type === 'added') {
+        return `Property '${path}${item.key}' was added with value: ${makeFormatPreview(item.value)}`;
+      }
 
-    if (item.type === 'changed') {
-      result.push(`Property '${path}${item.key}' was updated. From ${makeFormatPreview(item.oldValue)} to ${makeFormatPreview(item.newValue)}`);
-    }
-    if (item.type === 'changedInside') {
+      if (item.type === 'changed') {
+        return `Property '${path}${item.key}' was updated. From ${makeFormatPreview(item.oldValue)} to ${makeFormatPreview(item.newValue)}`;
+      }
       const newPath = `${path}${item.key}.`;
-      result.push(`${makePlain(item.children, newPath)}`);
-    }
-    return 0;
-  });
+      return `${makePlain(item.children, newPath)}`;
+    });
   return result.join('\n');
 };
 
