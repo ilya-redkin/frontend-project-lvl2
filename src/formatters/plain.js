@@ -12,7 +12,7 @@ const makeFormatPreview = (value) => {
 };
 
 const makePlain = (data, path = '') => {
-  let previousPath;
+  let previousPath = '';
   const result = [];
   data.map((item) => {
     if (item.type === 'removed') {
