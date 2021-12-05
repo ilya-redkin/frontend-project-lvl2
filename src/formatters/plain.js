@@ -12,7 +12,6 @@ const makeFormatPreview = (value) => {
 };
 
 const makePlain = (data, path = '') => {
-  let previousPath = '';
   const result = [];
   data.map((item) => {
     if (item.type === 'removed') {
@@ -26,10 +25,8 @@ const makePlain = (data, path = '') => {
       result.push(`Property '${path}${item.key}' was updated. From ${makeFormatPreview(item.oldValue)} to ${makeFormatPreview(item.newValue)}`);
     }
     if (item.type === 'changedInside') {
-      previousPath = path;
-      path += `${item.key}.`;
-      result.push(`${makePlain(item.children, path)}`);
-      path = previousPath;
+      const newPath = `${path}${item.key}.`;
+      result.push(`${makePlain(item.children, newPath)}`);
     }
     return 0;
   });
