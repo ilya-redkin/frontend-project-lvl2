@@ -1,9 +1,11 @@
 const makeFormatPreview = (value) => {
   if (typeof value !== 'object' && typeof value !== 'string') {
     return value;
-  } else if (typeof value === 'string') {
+  }
+  if (typeof value === 'string') {
     return `'${value}'`;
-  } else if (value === null) {
+  }
+  if (value === null) {
     return null;
   }
   return '[complex value]';
