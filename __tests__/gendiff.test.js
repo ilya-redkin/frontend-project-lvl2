@@ -10,17 +10,21 @@ const __dirname = dirname(__filename);
 const pathToFixtures = `${__dirname}/../__fixtures__/`;
 const readFile = (file) => fs.readFileSync(`${pathToFixtures}${file}`, 'utf8');
 
-test('compare_deep_json_stylish', async () => {
-  const stylishResult = readFile('stylishResult.txt');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'stylish')).toEqual(stylishResult);
+const stylishResult = readFile('stylishResult.txt');
+const plainResult = readFile('plainResult.txt');
+const jsonResult = readFile('jsonResult.json');
+const formats = ['json', 'yaml'];
+
+test.each(formats)('fileFormat %p', (format) => {
+  const pathToFirstFile = `${pathToFixtures}file1.${format}`;
+  const pathToSecondFile = `${pathToFixtures}file2.${format}`;
+  expect(genDiff(pathToFirstFile, pathToSecondFile)).toEqual(stylishResult);
+  expect(genDiff(pathToFirstFile, pathToSecondFile, 'stylish')).toEqual(stylishResult);
+  expect(genDiff(pathToFirstFile, pathToSecondFile, 'json')).toEqual(jsonResult.toString());
+  expect(genDiff(pathToFirstFile, pathToSecondFile, 'plain')).toEqual(plainResult);
 });
 
-test('compare_deep_json_plain', async () => {
-  const plainResult = readFile('plainResult.txt');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'plain')).toEqual(plainResult);
-});
-
-test('compare_deep_json_json', async () => {
-  const jsonResult = readFile('jsonResult.json');
-  expect(genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'json')).toEqual(jsonResult);
+test('checkJSONValidity', async () => {
+  const JSONdata = genDiff(`${pathToFixtures}file1.json`, `${pathToFixtures}file2.json`, 'json');
+  expect(() => JSON.parse(JSONdata).not.toThrow());
 });

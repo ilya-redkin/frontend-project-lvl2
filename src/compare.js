@@ -20,6 +20,7 @@ const buildDiff = (file1, file2) => {
   };
   const listOfKeys = _.sortBy(_.union(Object.keys(file1), Object.keys(file2)));
   const result = listOfKeys.map(iter);
+  // console.log('THIS IS A COMPARE RESULT: \n', result);
   return result;
 };
 

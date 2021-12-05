@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const makeStylish = (arr, replacer = '    ', spacesCount = 1) => {
   if (!Array.isArray(arr)) { return 'The file is neither .json nor .yaml'; }
   const iter = (data, depth) => {
@@ -9,7 +11,10 @@ const makeStylish = (arr, replacer = '    ', spacesCount = 1) => {
         const stringifyCurrentIndent = replacer
           .repeat((stringifyDepth + 1) * spacesCount);
         const stringifyBracketIndent = replacer.toString().repeat(stringifyDepth * spacesCount);
-        if (typeof currentValue !== 'object') {
+        if (currentValue === null) {
+          return null;
+        }
+        if (!_.isObject(currentValue)) {
           return currentValue.toString();
         }
         const lines = Object
