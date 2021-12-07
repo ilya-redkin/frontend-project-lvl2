@@ -32,13 +32,13 @@ gendiff -f, --format <type>
 Pull requests are welcome.
 
 ## Example of the comparison of the two JSON files - 'stylish' format is used by default:
-<a href="https://asciinema.org/a/8n13LMRhDDFMESHFNbnqkoP8y" target="_blank"><img src="https://asciinema.org/a/8n13LMRhDDFMESHFNbnqkoP8y" /></a>
+<a href="https://asciinema.org/a/8n13LMRhDDFMESHFNbnqkoP8y" target="_blank"><img src="https://asciinema.org/a/8n13LMRhDDFMESHFNbnqkoP8y.svg" /></a>
 
 ## Example of the comparison of the two JSON files - 'plain' format:
-<a href="https://asciinema.org/a/Sxk8N4P1tAbLuW3LRRA6ZXES2" target="_blank"><img src="https://asciinema.org/a/Sxk8N4P1tAbLuW3LRRA6ZXES2" /></a>
+<a href="https://asciinema.org/a/Sxk8N4P1tAbLuW3LRRA6ZXES2" target="_blank"><img src="https://asciinema.org/a/Sxk8N4P1tAbLuW3LRRA6ZXES2.svg" /></a>
 
 ## Example of the comparison of the two JSON files - 'json' format:
-<a href="https://asciinema.org/a/BRbghfEwwGJaoHfGf6rZ2bCUn" target="_blank"><img src="https://asciinema.org/a/BRbghfEwwGJaoHfGf6rZ2bCUn" /></a>
+<a href="https://asciinema.org/a/BRbghfEwwGJaoHfGf6rZ2bCUn" target="_blank"><img src="https://asciinema.org/a/BRbghfEwwGJaoHfGf6rZ2bCUn.svg" /></a>
 
 ## Example of the comparison of the two YAML files - 'stylish' format is used by default:
-<a href="https://asciinema.org/a/oUjSzBW7Hpl3vjhcaG6UlCnzG" target="_blank"><img src="https://asciinema.org/a/oUjSzBW7Hpl3vjhcaG6UlCnzG" /></a>
+<a href="https://asciinema.org/a/oUjSzBW7Hpl3vjhcaG6UlCnzG" target="_blank"><img src="https://asciinema.org/a/oUjSzBW7Hpl3vjhcaG6UlCnzG.svg" /></a>
