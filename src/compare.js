@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 const buildDiff = (file1, file2) => {
-  const iter = (key) => {
+  const iterateThroughKeys = (key) => {
     if (!_.hasIn(file1, key)) {
       return { type: 'added', key, value: file2[key] };
     }
@@ -19,8 +19,7 @@ const buildDiff = (file1, file2) => {
     };
   };
   const listOfKeys = _.sortBy(_.union(Object.keys(file1), Object.keys(file2)));
-  const result = listOfKeys.map(iter);
-  // console.log('THIS IS A COMPARE RESULT: \n', result);
+  const result = listOfKeys.map(iterateThroughKeys);
   return result;
 };
 

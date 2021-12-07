@@ -30,3 +30,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.MY_HEXLETPROJECT2_CODECLIMATE_KEY }}
         with:
           coverageCommand: make test-coverage
+          
