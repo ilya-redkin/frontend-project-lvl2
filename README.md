@@ -4,7 +4,7 @@
 <a href="https://codeclimate.com/github/ilya-redkin/frontend-project-lvl2/maintainability"><img src="https://api.codeclimate.com/v1/badges/b4ffe891a4a220f0177f/maintainability" /></a>
 <a href="https://codeclimate.com/github/ilya-redkin/frontend-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/b4ffe891a4a220f0177f/test_coverage" /></a>
 
-### Gendiff
+## Gendiff
 The application compares to files (json or yaml/yml) and displays the difference in one of the chosen output formats
 
 ## Installation
